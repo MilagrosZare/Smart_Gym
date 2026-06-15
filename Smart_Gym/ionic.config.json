@@ -1,0 +1,7 @@
+{
+  "name": "Smart_Gym",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
