@@ -1,0 +1,75 @@
+@use '../../theme/colors' as *;
+
+ion-content {
+  --background: rgb(27, 26, 26); // fondo general negro
+}
+
+.reservas-title {
+    color: #fff;
+    text-align: center;
+    margin: 16px 0;
+}
+
+ion-toolbar {
+  --background: rgb(27, 26, 26); // barra superior negra
+    color: rgb(255, 123, 0);   // texto Smart Gym en naranja
+}
+
+ion-segment {
+  --background: rgb(27, 26, 26); // barra de filtros negra
+}
+
+
+    ion-icon {
+    color: rgb(255, 123, 0);
+    width: 24px;
+    height: 24px;
+    }
+
+
+.dark-bg {
+    background-color: rgb(27, 26, 26);
+}
+
+.reservas-title {
+    color: #fff;
+    text-align: center;
+    margin: 16px 0;
+}
+
+.filter-bar {
+    background-color: rgb(46, 43, 43);
+    ion-segment-button {
+    --color: white;
+    --color-checked: rgb(255, 123, 0);
+    }
+    ion-icon {
+    color: rgb(255, 123, 0);
+    }
+    }
+
+ion-item {
+    --background-color: rgb(255, 166, 0);;
+    color: rgb(255, 123, 0);
+    --margin-bottom: 8px;
+    --background: rgb(46, 45, 43);
+
+    h2 {
+    color: rgb(255, 102, 0);
+    font-size: 16px;
+    }
+
+    p {
+    color: rgb(255, 166, 0);
+    font-size: 14px;
+    }
+}
+
+
+ion-icon {
+    color: rgb(255, 123, 0);
+    width: 24px;
+    height: 24px;
+    }
+
+    

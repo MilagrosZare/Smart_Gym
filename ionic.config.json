@@ -1,0 +1,7 @@
+{
+  "name": "ReservasSmartGym",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
