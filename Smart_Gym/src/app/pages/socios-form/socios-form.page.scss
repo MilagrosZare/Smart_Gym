@@ -1,0 +1,116 @@
+$sg-fondo: #242629;         
+$sg-superficie: #373C42;    
+$sg-naranja: #e8920a;       
+$sg-naranja-hover: #f5a623; 
+$sg-texto: #f0f0f0;         
+$sg-apagado: #8a8d94;       
+$sg-borde: #2e3035;         
+$sg-peligro: #f87171;       
+$sg-radio: 8px;
+
+.gym-fondo {
+    --background: #{$sg-fondo};
+    --color: #{$sg-texto};
+}
+
+.contenedor-formulario {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100%;
+    padding: 20px;
+}
+
+.card-formulario {
+    background: $sg-superficie;
+    border: 1px solid $sg-borde;
+    border-radius: 12px;
+    padding: 30px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}  
+
+.titulo-formulario {
+    color: $sg-texto;
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 24px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 18px;
+
+    label {
+        color: $sg-apagado;
+        font-size: 13px;
+        font-weight: 500;
+    }
+}
+
+.custom-input {
+    background: $sg-fondo;
+    border: 1px solid $sg-borde;
+    border-radius: 8px;
+    color: $sg-texto;
+    padding: 12px 14px;
+    font-size: 14px;
+    outline: none;
+
+    &:focus {
+        border-color: $sg-naranja;
+    }
+}
+
+.custom-select {
+    background: $sg-fondo;
+    border: 1px solid $sg-borde;
+    border-radius: 8px;
+    color: $sg-texto;
+    padding: 12px 14px;
+    font-size: 14px;
+    outline: none;
+    cursor: pointer;
+
+    &:focus {
+        border-color: $sg-naranja;
+    }
+}
+
+// CORREGIDO: En plural para que enlace con tu div del HTML
+.acciones-formulario {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+    margin-top: 28px;
+}
+
+// CORREGIDO: Forzamos las variables de Ionic para que tome el naranja
+.btn-orange {
+    --background: #{$sg-naranja} !important;
+    --background-activated: #{$sg-naranja-hover} !important;
+    --background-hover: #{$sg-naranja-hover} !important;
+    --color: #{$sg-texto} !important;
+    font-weight: bold;
+    --border-radius: 8px;
+}
+
+// Botón Cancelar (Efecto inteligente: se contornea de rojo al pasar el mouse)
+ion-button[fill="clear"] {
+    --color: #{$sg-apagado};
+    font-weight: 500;
+    border: 1px solid transparent; 
+    border-radius: #{$sg-radio};
+    transition: all 0.2s ease;
+
+    &:hover {
+        --color: #{$sg-peligro} !important;
+        border-color: #{$sg-peligro} !important; 
+        background: rgba($sg-peligro, 0.08) !important; 
+    }
+}
