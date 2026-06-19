@@ -1,64 +1,45 @@
 <ion-header>
   <ion-toolbar class="top-bar">
-    <!-- Botón flecha -->
+    
     <ion-buttons slot="start">
-      <ion-button>
-        <ion-icon src="assets/icons/angles-left-svgrepo-com.svg"></ion-icon>
+      <ion-button routerLink="/home">
+        <ion-icon src="assets/icon/angles.svg"></ion-icon>
       </ion-button>
     </ion-buttons>
 
-    <!-- Título Smart Gym -->
-    <ion-title>Smart Gym</ion-title>
-
-    <!-- Icono usuario -->
-    <ion-buttons slot="end">
-      <ion-icon src="assets/icons/user-svgrepo-com.svg"></ion-icon>
-    </ion-buttons>
+    <ion-title>
+      <span class="smartgym-title">Smart Gym</span>
+      <ion-icon src="assets/icon/user.svg"></ion-icon>
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="dark-bg">
-  <!-- Título Reservas -->
+  <ion-content class="dark-bg">
   <h1 class="reservas-title">Reservas</h1>
 
-  <!-- Botones de filtros -->
-  <ion-segment value="todas" class="filter-bar">
-    <ion-segment-button value="todas">
-      <ion-icon src="assets/icons/list-svgrepo-com.svg"></ion-icon>
+
+  <ion-segment [(ngModel)]="filtro" class="filter-bar">
+    <ion-segment-button value="todas" layout="icon-start">
+      <ion-icon src="assets/icon/list.svg"></ion-icon>
       <ion-label>Todas</ion-label>
     </ion-segment-button>
-    <ion-segment-button value="yoga">
-      <ion-icon src="assets/icons/stretching-svgrepo-com.svg"></ion-icon>
+    <ion-segment-button value="yoga" layout="icon-start">
+      <ion-icon src="assets/icon/stretching.svg"></ion-icon>
       <ion-label>Yoga</ion-label>
     </ion-segment-button>
-    <ion-segment-button value="spinning">
-      <ion-icon src="assets/icons/exercise-svgrepo-com.svg"></ion-icon>
+    <ion-segment-button value="spinning" layout="icon-start">
+      <ion-icon src="assets/icon/exercise.svg"></ion-icon>
       <ion-label>Spinning</ion-label>
     </ion-segment-button>
   </ion-segment>
 
-  <!-- Lista de clases -->
+
   <ion-list>
-    <ion-item button (click)="presentToast('Reserva exitosa')">
+    <ion-item *ngFor="let clase of clasesFiltradas" button (click)="presentToast('Reserva exitosa')">
       <ion-label>
-        <h2>Yoga 7:00</h2>
-        <p>3 lugares</p>
-      </ion-label>
-    </ion-item>
-
-    <ion-item button (click)="presentToast('Reserva exitosa')">
-      <ion-label>
-        <h2>Spinning 10:00</h2>
-        <p>5 lugares</p>
-      </ion-label>
-    </ion-item>
-
-    <ion-item button (click)="presentToast('Reserva exitosa')">
-      <ion-label>
-        <h2>Yoga 13:00</h2>
-        <p>7 lugares</p>
+        <h2>{{ clase.nombre }} {{ clase.hora }}</h2>
+        <p>{{ clase.lugares }} lugares</p>
       </ion-label>
     </ion-item>
   </ion-list>
-</ion-content>
-
+  </ion-content>
