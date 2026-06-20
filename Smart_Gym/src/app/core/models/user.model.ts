@@ -7,3 +7,13 @@ export interface User {
     telefono: number;
     activo?: boolean; //Opcional: si la base de datos lo trae como true, se usa.?Operador de propiedad opcional,puede estar o no estar
 }
+
+export interface LoginRequest { /* front envía a back */
+    email: string;
+    password: string;
+}
+
+export interface LoginResponse {  /* back devuelve a front si el login fue exitoso */
+    token: string; 
+    usuario: User;
+}
