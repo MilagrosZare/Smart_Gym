@@ -2,6 +2,7 @@ import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,10 +14,18 @@ import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/stan
 })
 
 export class LoginPage {
+
+  
   email = '';
   password = '';
   loading = signal(false);
   error = signal('');
   showPassword = signal(false);
+  
+  constructor (private router : Router) {}
+
+    recuperarContrasena() {
+    this.router.navigate(['/forgot-password'])
+  }
 
 }

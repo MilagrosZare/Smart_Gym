@@ -15,11 +15,8 @@ export const routes: Routes = [
     loadComponent: () => import('./home/home.page').then((m) => m.HomePage),
   },
   {
-    path: 'socios-lista',
-    loadComponent: () => import('./pages/socios-lista/socios-lista.page').then( m => m.SociosListaPage)
-  },
-  {
-    path: 'socios-form',
-    loadComponent: () => import('./pages/socios-form/socios-form.page').then( m => m.SociosFormPage)
-  },
+    path: 'forgot-password',
+    loadComponent: () => import('./auth/forgot-password/forgot-password.page').then( m => m.ForgotPasswordPage)
+  }
+
 ];
