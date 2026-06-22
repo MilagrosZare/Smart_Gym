@@ -147,6 +147,14 @@ box-shadow: 0 8px 48px rgba(0, 0, 0, 0.45);
     &:hover { opacity: 0.75; }
     }
 }
+
+.hardcoded_data_p {
+    display: flex;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 600;
+    color: $c-muted;
+}
 }
 
 /* Campos */
