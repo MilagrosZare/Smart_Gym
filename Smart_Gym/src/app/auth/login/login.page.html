@@ -84,9 +84,9 @@
       <button
         class="btn-submit"
         [class.btn-submit--loading]="loading()"
-        (click)="null" 
+        (click)="onSubmit()" 
         [disabled]="loading()"
-      > <!-- NULL SE MODIFICA POR ONSUBMIT CUANDO LOGRE CONECTAR CON EL BACKEND -->
+      >
         <span class="btn-submit__text" *ngIf="!loading()">Entrar</span>
         <span class="btn-submit__spinner" *ngIf="loading()">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -96,9 +96,14 @@
         </span>
       </button>
 
-      <p class="login-card__forgot">
+      <span class="login-card__forgot">
         <a (click)="recuperarContrasena()">¿Olvidaste tu contraseña?</a>
-      </p>
+      </span>
+
+      <div class="hardcoded_data_container">
+        <p class="hardcoded_data_p">Admin: admin@smartgym.com // Contraseña: admin123</p>
+        <p class="hardcoded_data_p">Socio: socia@smartgym.com // Contraseña: socia123</p>
+      </div>
     </div>
 
     <!-- Footer -->

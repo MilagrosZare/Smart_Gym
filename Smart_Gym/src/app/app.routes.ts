@@ -18,6 +18,14 @@ export const routes: Routes = [
     path: 'forgot-password',
     loadComponent: () => import('./auth/forgot-password/forgot-password.page').then( m => m.ForgotPasswordPage)
   },
+  {
+    path: 'home',
+    loadComponent: () => import('./home/home.page').then((m) => m.HomePage),
+  },
+  {
+    path: 'forgot-password',
+    loadComponent: () => import('./auth/forgot-password/forgot-password.page').then( m => m.ForgotPasswordPage)
+  },
     {
     path: 'reservas',
     loadComponent: () => import('./pages/reservas/reservas.page').then(m => m.ReservasPage),
@@ -26,6 +34,5 @@ export const routes: Routes = [
     path: 'registro',
     loadComponent: () => import('./auth/registro/registro.page').then( m => m.RegistroPage)
   }
-
 
 ];
