@@ -1,15 +1,18 @@
 package proyectoGym.demo.controller;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import proyectoGym.demo.entidad.Clase;
 import proyectoGym.demo.entidad.Usuario;
 import proyectoGym.demo.service.UsuarioService;
-
+import java.util.Map; // <-- ESTE es el único Map que tiene que quedar
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/usuarios")
+@CrossOrigin(origins = "*")
 public class UsuarioController {
 
     private final UsuarioService usuarioService;
@@ -73,6 +76,27 @@ public class UsuarioController {
         try {
             List<Clase> clases = usuarioService.obtenerMisClases(id);
             return ResponseEntity.ok(clases);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("{\"error\": \"" + e.getMessage() + "\"}");
+        }
+    }
+    // 7. ENDPOINT DE LOGIN (Optimizado y delegando la lógica al Service)
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody Map<String, String> credenciales) {
+        try {
+            String nombre = credenciales.get("nombre");
+            String password = credenciales.get("contrasena");
+
+            // Consultamos al servicio si las credenciales son válidas
+            Optional<Usuario> usuarioOpt = usuarioService.validarLogin(nombre, password);
+
+            if (usuarioOpt.isPresent()) {
+                return ResponseEntity.ok(usuarioOpt.get());
+            } else {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                        .body("{\"error\": \"Nombre de usuario o contraseña incorrectos.\"}");
+            }
+
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("{\"error\": \"" + e.getMessage() + "\"}");
         }

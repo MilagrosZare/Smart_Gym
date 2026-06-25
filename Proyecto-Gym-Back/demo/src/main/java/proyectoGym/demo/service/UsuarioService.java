@@ -75,4 +75,12 @@ public class UsuarioService {
         }
         return claseRepository.findByUsuariosInscritosId(usuarioId);
     }
+
+    // 7. Login
+    public Optional<Usuario> validarLogin(String nombre, String contrasena) {
+        return usuarioRepository.findAll().stream()
+                .filter(u -> u.getNombre().equalsIgnoreCase(nombre)
+                        && u.getPassword().equals(contrasena)) // <-- ¡Listo! getPassword() con P mayúscula
+                .findFirst();
+    }
 }
