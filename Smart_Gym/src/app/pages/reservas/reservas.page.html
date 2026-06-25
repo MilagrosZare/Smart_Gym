@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar class="top-bar">
+    
+    <ion-buttons slot="start">
+      <ion-button routerLink="/home">
+        <ion-icon src="assets/icon/angles.svg"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title>
+      <span class="smartgym-title">Smart Gym</span>
+      <ion-icon src="assets/icon/user.svg"></ion-icon>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+  <ion-content class="dark-bg">
+  <h1 class="reservas-title">Reservas</h1>
+
+
+  <ion-segment [(ngModel)]="filtro" class="filter-bar">
+    <ion-segment-button value="todas" layout="icon-start">
+      <ion-icon src="assets/icon/list.svg"></ion-icon>
+      <ion-label>Todas</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="yoga" layout="icon-start">
+      <ion-icon src="assets/icon/stretching.svg"></ion-icon>
+      <ion-label>Yoga</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="spinning" layout="icon-start">
+      <ion-icon src="assets/icon/exercise.svg"></ion-icon>
+      <ion-label>Spinning</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+
+  <ion-list>
+    <ion-item *ngFor="let clase of clasesFiltradas" button (click)="presentToast('Reserva exitosa')">
+      <ion-label>
+        <h2>{{ clase.nombre }} {{ clase.hora }}</h2>
+        <p>{{ clase.lugares }} lugares</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  </ion-content>
