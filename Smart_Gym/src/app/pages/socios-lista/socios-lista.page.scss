@@ -1,88 +1,78 @@
-// Estilos del componente (Encapsuladas)
-$sg-fondo: #1e1e22;
-$sg-superficie: #2a2a30;
-$sg-superficie2: #313139;
-$sg-dorado: #e8a020;
-$sg-texto: #f0eee8;
-$sg-apagado: #9b9890;
-$sg-borde: rgba(255, 255, 255, 0.08);
-$sg-radio: 10px;
-$sg-peligro: #f87171;
-$sg-exito: #4ade80;
+//Paleta de colores
+$c-bg:          #2a2e33;
+$c-surface:     #373C42;
+$c-surface-2:   #242629;
+$c-border:      #2e3035;
+$c-orange:      #e8920a;
+$c-orange-lt:   #f5a623;
+$c-text:        #f0f0f0;
+$c-muted:       #8a8d94;
+$c-error:       #e05c5c;
 
-// Estilos del contenedor de Smart Gym estructura
+$sg-radio: 10px;
+
+//Contenedor principal
+
 ion-content.contenedor-smart-gym {
-    --background: #{$sg-fondo};
-    --color: #{$sg-texto};
+    --background: #{$c-bg};
+    --color: #{$c-text};
 }
 
 ion-toolbar {
-    --background: #{$sg-superficie};
-    --border-color: #{$sg-borde};
-    --color: #{$sg-texto};
+    --background: #{$c-surface};
+    --border-color: #{$c-border};
+    --color: #{$c-text};
 }
 
-.contenido-interno {
-    padding: 20px;
-}
-
-
-// Estilos del header 
+//Header
 
 .titulo-header {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 16px; 
 }
 
-.logo-header {
-    width: 38px;
-    height: 32px;
-    border: 2px solid $sg-dorado;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    font-weight: 500;
-    color: $sg-dorado;
+.logo-gym {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
 }
 
 .nombre-header {
-    font-size: 16px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.15em; 
+    
 }
 
 .etiqueta-header {
     font-size: 14px;
-    color: $sg-dorado;
-    margin-left: 6px;
-}
-
-.boton-navegacion {
-    --color: #{$sg-dorado};
+    color: $c-orange;
     font-weight: 500;
+    text-transform: uppercase;
+    margin-left: 12px;
 }
 
-
-// Estilos de pagina
+//Navegacion
 
 .guia-navegacion {
     font-size: 14px;
-    color: $sg-apagado;
-    margin-bottom: 16px;
+    color: $c-muted;
+    margin-bottom: 24px;
+    margin-top: 28px;
 
     .dorado {
-        color: $sg-dorado;
+        color: $c-orange;
     }
 }
+
+//Encabezado de pagina
 
 .encabezado-pagina {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 24px;
+    margin-bottom: 32px;
     gap: 12px;
     flex-wrap: wrap;
 }
@@ -90,17 +80,17 @@ ion-toolbar {
 .titulo-pagina {
     font-size: 26px;
     font-weight: 600;
-    margin: 0 0 6px;
+    margin: 0 0 10px;
 }
 
 .subtitulo-pagina {
     font-size: 14px;
-    color: $sg-apagado;
+    color: $c-muted;
     margin: 0;
 }
 
 .boton-principal {
-    --background: #{$sg-dorado};
+    --background: #{$c-orange};
     --color: #1a1000;
     --border-radius: #{$sg-radio};
     font-size: 14px;
@@ -108,64 +98,71 @@ ion-toolbar {
     height: 42px;
 }
 
-// Estilos de la grilla
+//Grilla
 
 .grilla-socios {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 14px;
-    margin-bottom: 24px;
+    margin-bottom: 32px;
 
     @media (max-width: 768px) {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr; 
     }
 }
 
+//Socios
 .tarjeta-socios {
-    background: $sg-superficie;
-    border: 1px solid $sg-borde;
+    background: $c-surface;
+    border: 1px solid $c-border;
     border-radius: $sg-radio;
     padding: 16px;
 
+    
+    .titulo-socios {
+        font-size: 13px;
+        color: $c-muted;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+    }
+
+    .numero-socios {
+        font-size: 34px;
+        font-weight: 600;
+        color: $c-text; 
+    }
+
+    .detalle-socios {
+        font-size: 13px;
+        color: $c-muted;
+    }
+
+    
     &.tarjeta-alerta {
-        border-color: rgba($sg-peligro, 0.2);
+        border-color: rgba($c-error, 0.2);
+        
+        .titulo-socios, 
+        .numero-socios {
+            color: $c-error; 
+        }
+    }
+
+    &.tarjeta-exito {
+        border-color: rgba(#4ade80, 0.2);
+        
         .titulo-socios,
-        .numero-socios{
-            color: $sg-peligro !important ;
+        .numero-socios {
+            color: #4ade80; 
         }
     }
 }
 
-.titulo-socios {
-    font-size: 13px;
-    color: $sg-apagado;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 8px;
-}
-
-.numero-socios {
-    font-size: 34px;
-    font-weight: 600;
-    line-height: 1;
-    color: $sg-texto;
-}
-
-.detalle-socios {
-    font-size: 13px;
-    color: $sg-apagado;
-    margin-top: 4px;
-}
-
-//Estilos del buscador y filtros
-.barra-herramientas {
-    margin-bottom: 20px;
-}
+//Buscador y filtros
 
 .buscador-smart-gym {
-    --background: #{$sg-superficie};
-    --color: #{$sg-texto};
-    --placeholder-color: #{$sg-apagado};
+    --background: #{$c-surface};
+    --color: #{$c-text};
+    --placeholder-color: #{$c-muted};
     --border-radius: #{$sg-radio};
     margin-bottom: 15px;
 }
@@ -175,11 +172,13 @@ ion-toolbar {
     align-items: center;
     gap: 12px;
     flex-wrap: wrap;
+    background: transparent;
+    padding: 0;
 }
 
 .texto-filtrar {
     font-size: 14px;
-    color: $sg-apagado;
+    color: $c-muted;
 }
 
 .grupo-filtros {
@@ -192,66 +191,61 @@ ion-toolbar {
     border-radius: 20px;
     font-size: 14px;
     cursor: pointer;
-    border: 1px solid $sg-borde;
-    color: $sg-apagado;
+    border: 1px solid $c-border;
+    color: $c-muted;
     background: transparent;
-    transition: all 0.2s;
 
     &.activa {
-        background: $sg-dorado;
+        background: $c-orange;
         color: #1a1000;
-        border-color: $sg-dorado;
+        border-color: $c-orange;
         font-weight: 600;
     }
 }
 
 .texto-contador-totales {
     font-size: 14px;
-    color: $sg-apagado;
+    color: $c-muted;
     margin-left: auto;
 }
 
-//Estilos de la tabla de contenido
+//Tabla de usuarios
+
 .tarjeta-tabla {
-    background: $sg-superficie;
-    border: 1px solid $sg-borde;
-    border-radius: $sg-radio;
+    background: $c-surface;
+    border: 1px solid $c-border;
+    border-radius: 12px;
+    margin: 24px 0 0 0;
     overflow-x: auto;
+    
 }
 
 .tabla-smart-gym {
     width: 100%;
     border-collapse: collapse;
     font-size: 15px;
-    min-width: 600px;
+    min-width: 700px;
 
     thead {
-        background: $sg-superficie2;
-
+        background: $c-surface-2;
         th {
             padding: 14px 16px;
             text-align: left;
             font-size: 13px;
             font-weight: 600;
-            color: $sg-apagado;
+            color: $c-muted;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
-            border-bottom: 1px solid $sg-borde;
+            border-bottom: 1px solid $c-border;
         }
     }
 
     tbody {
         td {
             padding: 16px 16px;
-            border-bottom: 1px solid $sg-borde;
+            border-bottom: 1px solid $c-border;
         }
-
         tr:last-child td {
             border-bottom: none;
-        }
-
-        tr:hover td {
-            background: rgba(255, 255, 255, 0.015);
         }
     }
 }
@@ -262,10 +256,11 @@ ion-toolbar {
 }
 
 .celda-texto-gris {
-    color: $sg-apagado !important;
+    color: $c-muted !important;
 }
 
-//Estados y acciones botones
+//Estados Ac/inac
+
 .estado-usuario {
     display: flex;
     align-items: center;
@@ -276,19 +271,20 @@ ion-toolbar {
         width: 7px;
         height: 7px;
         border-radius: 50%;
-        display: inline-block;
     }
 
     &.usuario-activo {
-        color: $sg-exito;
-        .punto-estado { background-color: $sg-exito; }
+        color: #4ade80; 
+        .punto-estado { background-color: #4ade80; }
     }
 
     &.usuario-inactivo {
-        color: $sg-peligro;
-        .punto-estado { background-color: $sg-peligro; }
+        color: $c-error;
+        .punto-estado { background-color: $c-error; }
     }
 }
+
+//Botones
 
 .contenedor-acciones {
     display: flex;
@@ -299,23 +295,22 @@ ion-toolbar {
     width: 36px;
     height: 36px;
     border-radius: 6px;
-    border: 1px solid $sg-borde;
+    border: 1px solid $c-border;
     background: transparent;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    color: $sg-apagado;
-    transition: all 0.2s;
+    color: $c-muted;
 
     &:hover {
-        border-color: $sg-dorado;
-        color: $sg-dorado;
+        border-color: $c-orange;
+        color: $c-orange;
     }
 
     &.boton-borrar:hover {
-        border-color: $sg-peligro;
-        color: $sg-peligro;
+        border-color: $c-error;
+        color: $c-error;
     }
 }
 
@@ -327,5 +322,5 @@ ion-toolbar {
 .pantalla-vacia {
     text-align: center;
     padding: 40px !important;
-    color: $sg-apagado !important;
+    color: $c-muted !important;
 }

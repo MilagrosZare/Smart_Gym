@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonButton, IonContent, IonHeader, IonSearchbar, IonTitle, IonToolbar, ToastController } from '@ionic/angular/standalone';
 import { User } from 'src/app/core/models/user.model';
 import { Router, RouterLink } from '@angular/router';
+import { UsuarioService } from 'src/app/core/services/usuario-service.service';
 
 
 @Component({
@@ -15,121 +16,120 @@ import { Router, RouterLink } from '@angular/router';
 })
 export class SociosListaPage implements OnInit {
 
-  //Lista de prueba- Propiedad, (array de obj que usa molde de la interfaz User)
+  
+  public listaUsuarios: User[] = [];
 
-  listaSocios: User[] = [
-    {id: 1, 
-    nombre: 'Martina', 
-    apellido: 'Soria', 
-    email: 'martina.soria@gmail.com', 
-    rol: 'SOCIO',
-    telefono: 1123456789,
-    activo:true,
-  },
-  {id: 2,
-    nombre: 'Jimena',
-    apellido: 'Ferreyra',
-    email: 'jferreyra@gmail.com',
-    rol: 'SOCIO',
-    telefono: 1198765432,
-    activo:true,
-  },
-  {id: 3,
-    nombre: 'Camila',
-    apellido: 'Perez',
-    email: 'camperez@gmail.com',
-    rol: 'SOCIO',
-    telefono: 1131516145,
-    activo:false,
+  public usuariosFiltrados: User[] = [];
 
-  }
-  ];
-
-//Propiedad (array vacia de tipo User)Guarda el duplicado de la lista
-  public sociosFiltrados: User[] = [];
-
-//Propiedad (t.string) guarda el texto que la admi escribe en busc.  
   public textoBuscar: string='';
-//Propiedad(t.string)guarda cual boton de filt esta activo  
+
   public filtroEstado: string='todos';
 
-//Propiedad (t.number)Guarda n° de los contadores  
+
+  
   public cantTotal: number=0;
   public cantActivos: number=0;
-  public cantinactivos: number=0;
-
-//Inyector,trae herramientas de enrutamiento p/viajar de una pantalla a otra
-  constructor(private router: Router) { }
+  public cantInactivos: number=0;
 
 
-//Metodo obligatorio,se ejecuta solo al iniciar la pantalla
+  constructor(private router: Router,
+    private usuarioService: UsuarioService
+  ) { }
+
+
   public ngOnInit(): void {
-    this.sociosFiltrados = [...this.listaSocios];
-    this.resumenSocios();
+    this.cargarUsuarios();
   }
 
-//Metodo que recibe un texto,lo guarda en filtroEstado y ejectuta buscador
-  public resumenSocios(): void{
-    this.cantTotal=this.listaSocios.length;
-    this.cantActivos=this.listaSocios.filter(s => s.activo).length;
-    this.cantinactivos=this.listaSocios.filter(s=> !s.activo).length;
-    
+  public cargarUsuarios(): void{
+    this.usuarioService.getUsuarios().subscribe({
+      next: (usuarios) => {
+        this.listaUsuarios = usuarios;
+        this.buscar();
+        this.resumenUsuarios();
+      },
+      error: (err) => {
+        console.error('Error al conectar a la base de datos:', err);
+      }
+    });
   }
 
-//Metodo (motor de busqueda)Filtra la lista x nom,x apellido,x mail y x boton de estado seleccionada
-  public seleccionarEstado(estado: string): void {
+
+  public resumenUsuarios():void {
+    this.cantTotal = this.listaUsuarios.length;
+    this.cantActivos = this.listaUsuarios.filter(u => u.activo !==false).length
+    this.cantInactivos = this.listaUsuarios.filter(u => u.activo === false).length
+  }
+
+  public seleccionarEstado(estado: string): void{
     this.filtroEstado= estado;
     this.buscar();
   }
 
-  public buscar() : void {
-    let resultado = [...this.listaSocios];
+  public buscar (): void{
+    let resultado= [...this.listaUsuarios];
 
-    if (this.textoBuscar.trim() !== ''){
-      const texto = this.textoBuscar.toLocaleLowerCase();
-      resultado=resultado.filter(
-        s => s.nombre.toLocaleLowerCase().includes(texto) ||
-        s.apellido.toLocaleLowerCase().includes(texto) ||
-        s.email.toLocaleLowerCase().includes(texto) ||
-        (s.telefono && String(s.telefono).includes(texto))//convierte numero en string
+    if (this.textoBuscar.trim() !== '') {
+      const texto = this.textoBuscar.toLowerCase();
+      
+      resultado = resultado.filter(
+        u => u.nombre.toLowerCase().includes(texto) ||
+            u.apellido.toLowerCase().includes(texto) ||
+            u.email.toLowerCase().includes(texto) ||
+            (u.telefono && String(u.telefono).includes(texto))
       );
     }
     
-    if (this.filtroEstado === 'activo'){
-      resultado=resultado.filter (s => s.activo === true);
-    }else if (this.filtroEstado === 'inactivo'){
-      resultado=resultado.filter (s => s.activo === false)
+    
+    if (this.filtroEstado === 'activo') {
+      resultado = resultado.filter(u => u.activo !== false);
+    } else if (this.filtroEstado === 'inactivo') {
+      resultado = resultado.filter(u => u.activo === false);
     }
 
-    this.sociosFiltrados=resultado;
-
-  }
-
- //Metodo:de editar,recibe los datos de una socia y lleva a pantalla formulario 
-  public irAEditar(socio: User): void {
-    console.log('Editando socio:', socio);
-    this.router.navigate(['/socios-form']);
+    this.usuariosFiltrados = resultado;
   }
   
-//Metodo de confirmacion,pregunta si esta seguro de eliminar
-  public alertBorrar(socio: User): void {
-    const confirmar = confirm(`¿Estás segura de que querés eliminar a ${socio.nombre} ${socio.apellido}?`);
-    
-    if (confirmar) {
-      this.borrarSocio(socio.id);
+  
+  public irAEditar(usuario: User): void {
+    if (!usuario.id){
+      alert ('Usuario sin ID valido')
+      return;
     }
+    this.router.navigate(['/socios-form', usuario.id]);
   }
-    
   
-  //Metodo privado ,borra a la socia de la lista usando ID y vuelve actualizar la tabla y contadores
-  private borrarSocio(id: number): void {
-    this.listaSocios = this.listaSocios.filter(s => s.id !== id);
-    this.resumenSocios();
-    this.buscar();
+  public alertBorrar(usuario: User): void {
+    const confirmar = confirm(`¿Estás seguro/a de que querés dejar inactiva  a ${usuario.nombre} ${usuario.apellido}?`);
     
-    
-    alert('Socio eliminado correctamente.');
+    if(!confirmar){
+      return;
+    }
+
+
+    if (usuario.id === undefined){
+      alert('No se puede eliminar un usuario que no posee un ID válido.' )
+        return
+      } ;
+      this.borrarUsuario(usuario.id)
+    }
+  
+
+  
+  private borrarUsuario(id: number): void {
+    this.usuarioService.eliminarUsuario(id).subscribe({
+      next: (respuesta) => {
+        alert(respuesta.message || 'Se pudo dejar inactiva a la usuaria correctamente.');
+        this.cargarUsuarios(); 
+      },
+      error: (err) => {
+        console.error('Error al dejar inactiva a la usuaria:', err);
+        alert('Ocurrió un error al intentar dejar inactiva a la usuaria del sistema.');
+      }
+    });
   }
+
+
 }
 
 
