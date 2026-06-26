@@ -1,0 +1,42 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Administrador</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="home-admin-content">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Administrador</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="home-welcome ion-padding">
+    <h1>{{ welcomeText }}</h1>
+    <p>{{ subtitleText }}</p>
+    <p *ngIf="usuario">Usuario: {{ usuario.nombre }}</p>
+    <ion-button expand="block" fill="outline" color="light" (click)="logout()" class="logout-button">
+      Cerrar sesión
+    </ion-button>
+  </div>
+
+  <div class="home-cards ion-padding">
+    <ion-card button routerLink="/socios-lista" routerDirection="forward">
+      <ion-card-header>
+        <ion-card-title>Gestionar Usuarios</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        Accedé al panel para ver, editar y administrar los usuarios del gimnasio.
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card button routerLink="/gestionar-clases" routerDirection="forward">
+      <ion-card-header>
+        <ion-card-title>Gestionar Clases</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        Accedé al panel de clases para crear, modificar o revisar la oferta de clases.
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

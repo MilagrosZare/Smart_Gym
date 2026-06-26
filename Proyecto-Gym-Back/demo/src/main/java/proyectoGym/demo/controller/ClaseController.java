@@ -40,6 +40,17 @@ public class ClaseController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+    @DeleteMapping("/{claseId}/desinscribir/{usuarioId}")
+    public ResponseEntity<?> desinscribirUsuario(@PathVariable Long claseId, @PathVariable Long usuarioId) {
+        try {
+            Clase claseActualizada = claseService.desinscribirUsuario(claseId, usuarioId);
+            return ResponseEntity.ok(claseActualizada);
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
     //--- se agregan metodos para eliminar la clase
     // 4. ELIMINAR CLASE: DELETE http://localhost:8080/api/clases/{id}
     @DeleteMapping("/{id}")

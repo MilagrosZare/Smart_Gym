@@ -1,9 +1,8 @@
 <ion-header>
   <ion-toolbar class="top-bar">
-    
     <ion-buttons slot="start">
-      <ion-button routerLink="/home">
-        <ion-icon src="assets/icon/angles.svg"></ion-icon>
+      <ion-button routerLink="/home-reservas">
+        <ion-icon src="assets/icon/arrow-back.svg"></ion-icon>
       </ion-button>
     </ion-buttons>
 
@@ -14,9 +13,11 @@
   </ion-toolbar>
 </ion-header>
 
-  <ion-content class="dark-bg">
-  <h1 class="reservas-title">Reservas</h1>
-
+<ion-content class="dark-bg">
+  <div class="page-header">
+    <h1 class="reservas-title">Reservas</h1>
+    <p class="subtitle">Seleccioná una clase para inscribirte.</p>
+  </div>
 
   <ion-segment [(ngModel)]="filtro" class="filter-bar">
     <ion-segment-button value="todas" layout="icon-start">
@@ -33,13 +34,59 @@
     </ion-segment-button>
   </ion-segment>
 
+  <div class="page-header secondary-card">
+    <h2>Ver clases disponibles</h2>
+    <p>Consultá el listado completo de clases y reservá tu lugar con un solo toque.</p>
+    <ion-button expand="block" fill="solid" color="warning" routerLink="/reservas" routerDirection="forward" class="action-button">
+      Ir a clases disponibles
+    </ion-button>
+  </div>
 
-  <ion-list>
-    <ion-item *ngFor="let clase of clasesFiltradas" button (click)="presentToast('Reserva exitosa')">
-      <ion-label>
-        <h2>{{ clase.nombre }} {{ clase.hora }}</h2>
-        <p>{{ clase.lugares }} lugares</p>
+  <ion-progress-bar *ngIf="cargando" type="indeterminate"></ion-progress-bar>
+
+  <ion-list *ngIf="!cargando && clasesFiltradas.length > 0" class="clases-list">
+    <ion-item *ngFor="let clase of clasesFiltradas" detail="false" class="clase-card">
+      <ion-label class="clase-info">
+        <h2>{{ clase.nombre }} - {{ clase.horario }}</h2>
+        <p>
+          Cupo máximo: {{ clase.cupoMaximo }} ·
+          Inscritos: {{ clase.usuariosInscritos?.length ?? 0 }} ·
+          Disponibles: {{ lugaresDisponibles(clase) }}
+        </p>
       </ion-label>
+
+      <div class="clase-actions">
+        <ion-button
+          *ngIf="isEnrolled(clase)"
+          fill="outline"
+          color="danger"
+          size="small"
+          class="action-button"
+          (click)="desinscribir(clase)"
+        >
+          Desinscribirme
+        </ion-button>
+
+        <ion-button
+          *ngIf="!isEnrolled(clase)"
+          fill="solid"
+          color="warning"
+          size="small"
+          class="action-button"
+          [disabled]="!canEnroll(clase)"
+          (click)="inscribir(clase)"
+        >
+          Inscribirme
+        </ion-button>
+      </div>
+
+      <p *ngIf="!isEnrolled(clase) && hasSameType(clase)" class="warning-note">
+        Ya estás inscripto a otra clase de {{ clase.nombre }}
+      </p>
     </ion-item>
   </ion-list>
-  </ion-content>
+
+  <div *ngIf="!cargando && clasesFiltradas.length === 0" class="empty-state">
+    <p>No hay clases disponibles para este filtro.</p>
+  </div>
+</ion-content>

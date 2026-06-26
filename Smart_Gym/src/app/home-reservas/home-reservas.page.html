@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar class="toolbar-dark">
+    <ion-title>Mi espacio</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="home-reservas-content">
+  <ion-progress-bar *ngIf="cargandoMisClases" type="indeterminate"></ion-progress-bar>
+  <div class="page-header">
+    <h1>Reservas</h1>
+    <p>Elegí una opción para ver clases disponibles o revisar tus inscripciones desde tu cuenta.</p>
+  </div>
+
+  <div class="cards-grid ion-padding">
+    <ion-card class="home-card">
+      <ion-card-header>
+        <ion-card-title>Ver clases disponibles</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        Consultá el listado completo de clases y reservá tu lugar con un solo toque.
+        <ion-button expand="block" fill="solid" color="warning" routerLink="/reservas" routerDirection="forward" class="home-action-button">
+          Ir a clases disponibles
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="home-card">
+      <ion-card-header>
+        <ion-card-title>Mis clases inscriptas</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list *ngIf="misClases.length > 0; else noClases">
+          <ion-item *ngFor="let clase of misClases">
+            <ion-label>
+              <h2>{{ clase.nombre }}</h2>
+              <p>{{ clase.horario }}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+
+        <ng-template #noClases>
+          <p class="empty-text">No estás inscripto a ninguna clase todavía.</p>
+        </ng-template>
+
+        <p *ngIf="error" class="error-text">{{ error }}</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

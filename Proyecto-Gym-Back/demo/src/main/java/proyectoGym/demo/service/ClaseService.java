@@ -43,10 +43,38 @@ public class ClaseService {
             throw new RuntimeException("Lo sentimos, la clase de " + clase.getNombre() + " ya está llena.");
         }
 
+            // validación: no puede anotarse dos veces en el mismo tipo de clase
+        List<Clase> clasesDelUsuario = claseRepository.findByUsuariosInscritosId(usuarioId);
+        boolean tieneMismaClase = clasesDelUsuario.stream()
+                .anyMatch(c -> c.getNombre().equalsIgnoreCase(clase.getNombre()) && !c.getId().equals(claseId));
+
+        if (tieneMismaClase) {
+            throw new RuntimeException("Ya estás anotado en otra clase de " + clase.getNombre() + ". Solo podés tener una clase de este tipo.");
+        }
+
+        if (clase.getUsuariosInscritos().contains(usuario)) {
+            throw new RuntimeException("Ya estás inscripto en esta clase.");
+        }
+
         // Si pasa la validación, lo agregamos a la lista
         clase.getUsuariosInscritos().add(usuario);
 
         // Guardamos la clase actualizada (Hibernate se encarga de llenar la tabla intermedia)
+        return claseRepository.save(clase);
+    }
+
+    public Clase desinscribirUsuario(Long claseId, Long usuarioId) {
+        Clase clase = claseRepository.findById(claseId)
+                .orElseThrow(() -> new RuntimeException("Clase no encontrada con ID: " + claseId));
+
+        Usuario usuario = usuarioRepository.findById(usuarioId)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado con ID: " + usuarioId));
+
+        boolean eliminado = clase.getUsuariosInscritos().removeIf(u -> u.getId().equals(usuarioId));
+        if (!eliminado) {
+            throw new RuntimeException("No estás inscripto en esta clase.");
+        }
+
         return claseRepository.save(clase);
     }
 

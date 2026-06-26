@@ -2,7 +2,7 @@ import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent } from '@ionic/angular/standalone';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../core/service/auth.service'; // Ajustá la ruta relativa si es necesario
 
 @Component({
@@ -15,18 +15,25 @@ import { AuthService } from '../../core/service/auth.service'; // Ajustá la rut
 export class LoginPage {
 
   // Mantenemos estas variables para no tener que romper el [(ngModel)] de tu HTML actual
-  email = ''; 
+  email = '';
   password = '';
 
   loading = signal(false);
   error = signal('');
   showPassword = signal(false);
+  private returnUrl = '';
 
   // Inyectamos el servicio de autenticación en el constructor
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private authService: AuthService
-  ) {}
+  ) {
+    const returnUrlFromQuery = this.route.snapshot.queryParamMap.get('returnUrl');
+    if (returnUrlFromQuery) {
+      this.returnUrl = returnUrlFromQuery;
+    }
+  }
 
   onSubmit() { // Se activa cuando se toca el botón Ingresar
     this.error.set('');
@@ -48,12 +55,21 @@ export class LoginPage {
     this.authService.login(datosLogin).subscribe({
       next: (response) => {
         this.loading.set(false);
-        console.log('¡Login exitoso! Datos del usuario:', response);
-        
-        // Si más adelante necesitás el ID o el Rol del usuario, podés guardarlo acá:
-        // localStorage.setItem('usuario_logeado', JSON.stringify(response));
-        
-        this.router.navigate(['/home']);
+        const role = response?.role?.toString().trim().toLowerCase();
+        const isAdmin = role === 'administradorgym';
+        let destination = isAdmin ? '/home-admin' : '/home-reservas';
+
+        if (!isAdmin) {
+          if (this.returnUrl && this.returnUrl !== '/login' && this.returnUrl !== '/home-admin') {
+            destination = this.returnUrl;
+          }
+        } else {
+          if (this.returnUrl && this.returnUrl.startsWith('/home-admin')) {
+            destination = this.returnUrl;
+          }
+        }
+
+        this.router.navigateByUrl(destination, { replaceUrl: true });
       },
       error: (err) => {
         this.loading.set(false);

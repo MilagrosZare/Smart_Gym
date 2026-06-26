@@ -1,0 +1,60 @@
+ion-content.home-content {
+  --background: rgb(18, 18, 18);
+  color: #f5f5f5;
+}
+
+.home-welcome {
+  color: #f5f5f5;
+  padding: 20px 16px 12px;
+  margin-bottom: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+}
+
+.home-welcome h1 {
+  margin-bottom: 0.5rem;
+  font-size: 2rem;
+}
+
+.home-welcome p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #c9c9c9;
+}
+
+.home-cards {
+  display: grid;
+  gap: 16px;
+  padding: 0 16px 16px;
+}
+
+.home-card,
+ion-card {
+  background: rgb(34, 33, 33);
+  color: #f5f5f5;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
+}
+
+ion-card-title,
+ion-card-content {
+  color: #f5f5f5;
+}
+
+ion-card-title {
+  color: #ff9d1c;
+}
+
+@media (min-width: 768px) {
+  .home-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .home-welcome {
+    padding-bottom: 1rem;
+  }
+}
