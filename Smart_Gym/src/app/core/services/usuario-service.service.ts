@@ -19,7 +19,11 @@ export class UsuarioService {
 
   //Registro
   registrarUsuario(usuario: User): Observable<User> {
-    return this.http.post<User>(`${this.apiUrl}/registrar`, usuario);
+    const usuarioApi = {
+      ...usuario,
+      telefono: String(usuario.telefono)
+    };
+    return this.http.post<User>(`${this.apiUrl}/registrar`, usuarioApi);
   }
 
   //Leer por ID
@@ -29,7 +33,11 @@ export class UsuarioService {
 
   //Actualizar
   actualizarUsuario(id: number, usuario: User): Observable<User>{
-    return this.http.put<User>(`${this.apiUrl}/${id}`, usuario);
+    const usuarioApi = {
+      ...usuario,
+      telefono: JSON.stringify(usuario.telefono)
+    }
+    return this.http.put<User>(`${this.apiUrl}/${id}`, usuarioApi);
   }
 
   //Borrar

@@ -7,7 +7,7 @@ export interface User {
     email: string;
     password: string;
     rol: Role;
-    telefono: string;
+    telefono: number;
     activo?: boolean; //Opcional: si la base de datos lo trae como true, se usa.?Operador de propiedad opcional,puede estar o no estar
 }
 export interface LoginRequest { /* front envía a back || por si comunicamos con API*/

@@ -23,11 +23,11 @@ export class SociosFormPage implements OnInit {
     email: '',
     password:'smartgym_123',
     rol: 'socio',
-    telefono: '',
+    telefono: 0,
     activo:true,
   }
 
-  public esEdicion = false;
+  public edicion = false;
   private usuarioId?: number;
   
 
@@ -46,11 +46,11 @@ export class SociosFormPage implements OnInit {
   public  ngOnInit(): void {
 
     this.route.paramMap.subscribe(params => {
-      const idParam = params.get('id'); // 👈 Lee el ':id' de la URL de forma limpia
+      const idParam = params.get('id'); 
       
       if (idParam) {
         this.usuarioId = Number(idParam);
-        this.esEdicion = true;
+        this.edicion = true;
         this.cargarUsuarioParaEditar(this.usuarioId);
       }
     });
@@ -61,7 +61,7 @@ export class SociosFormPage implements OnInit {
     this.usuarioService.getUsuarioPorId(id).subscribe({
       next: (usuario) => {
         this.nuevoUsuario = usuario;
-        this.validarCampos();
+        this.nuevoUsuario.telefono = Number(usuario.telefono);
       },
       error: (err) => {
         console.error('Error al traer los datos del usuario:', err);
@@ -70,34 +70,34 @@ export class SociosFormPage implements OnInit {
   }
 
   public validarCampos(): boolean {
-    // Reseteamos todos los textos
+    
     this.errorNombre.set('');
     this.errorApellido.set('');
     this.errorEmail.set('');
     this.errorTelefono.set('');
 
-    // Validar Nombre y Apellido
+    
     if (!this.nuevoUsuario.nombre?.trim()) this.errorNombre.set('El nombre es obligatorio.');
     if (!this.nuevoUsuario.apellido?.trim()) this.errorApellido.set('El apellido es obligatorio.');
 
-    // Validar Email
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    
+    const emailValidacion = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!this.nuevoUsuario.email?.trim()) {
       this.errorEmail.set('El correo electrónico es obligatorio.');
-    } else if (!emailRegex.test(this.nuevoUsuario.email.trim())) {
+    } else if (!emailValidacion.test(this.nuevoUsuario.email.trim())) {
       this.errorEmail.set('Formato de correo inválido (ej: usuario@gym.com).');
     }
 
-    // Validar Teléfono
-    const telLimpio = String(this.nuevoUsuario.telefono || '').trim();
-    const telRegex = /^[0-9]{8,11}$/;
-    if (!telLimpio) {
+    
+    const telefonoEnTexto = JSON.stringify(this.nuevoUsuario.telefono || 0);
+    const telLimpio = telefonoEnTexto.trim();
+    const telValidacion = /^[0-9]{8,11}$/;
+    
+    if (!this.nuevoUsuario.telefono || telLimpio === '0') {
       this.errorTelefono.set('El teléfono es obligatorio.');
-    } else if (!telRegex.test(telLimpio)) {
+    } else if (!telValidacion.test(telLimpio)) {
       this.errorTelefono.set('Debe contener solo números (entre 8 y 11 dígitos).');
     }
-
-    // Si todos los signals están vacíos, el formulario es válido
     return !this.errorNombre() && !this.errorApellido() && !this.errorEmail() && !this.errorTelefono();
   }
 
@@ -105,10 +105,18 @@ export class SociosFormPage implements OnInit {
   public guardarUsuario(): void {
     if (!this.validarCampos()) return;
 
-    this.nuevoUsuario.telefono = String(this.nuevoUsuario.telefono).trim();
+    this.nuevoUsuario = JSON.parse(JSON.stringify(this.nuevoUsuario));
+    
     this.nuevoUsuario.email = this.nuevoUsuario.email.trim();
+    
+    this.nuevoUsuario.telefono = Number(this.nuevoUsuario.telefono);
+    
+    const payload = {
+    ...this.nuevoUsuario,
+    telefono: String(this.nuevoUsuario.telefono)
+    };
 
-    const request$ = this.esEdicion && this.usuarioId !== undefined
+    const request$ = this.edicion && this.usuarioId !== undefined
       ? this.usuarioService.actualizarUsuario(this.usuarioId, this.nuevoUsuario)
       : this.usuarioService.registrarUsuario(this.nuevoUsuario);
 

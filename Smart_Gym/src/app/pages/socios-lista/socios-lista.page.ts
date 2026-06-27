@@ -76,7 +76,7 @@ export class SociosListaPage implements OnInit {
         u => u.nombre.toLowerCase().includes(texto) ||
             u.apellido.toLowerCase().includes(texto) ||
             u.email.toLowerCase().includes(texto) ||
-            (u.telefono && String(u.telefono).includes(texto))
+            (u.telefono !== undefined && u.telefono !== null && JSON.stringify(u.telefono).includes(texto))
       );
     }
     
@@ -115,7 +115,6 @@ export class SociosListaPage implements OnInit {
     }
   
 
-  
   private borrarUsuario(id: number): void {
     this.usuarioService.eliminarUsuario(id).subscribe({
       next: (respuesta) => {

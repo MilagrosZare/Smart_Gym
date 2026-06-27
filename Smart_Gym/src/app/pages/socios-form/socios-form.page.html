@@ -1,7 +1,7 @@
 <ion-content class="gym-fondo">
   <div class="contenedor-formulario">
     <div class="card-formulario">
-      <h2 class="titulo-formulario"> {{esEdicion ? 'Modificar datos del usuario' : 'Registrar nuevo usuario'}} </h2>
+      <h2 class="titulo-formulario"> {{edicion ? 'Modificar datos del usuario' : 'Registrar nuevo usuario'}} </h2>
       
       <div class="input-group">
         <label for="inputNombre">Nombre</label>
@@ -32,7 +32,7 @@
 
       <div class="input-group">
         <label for="inputTelefono">Teléfono</label>
-        <input id="inputTelefono" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="10" [(ngModel)]="nuevoUsuario.telefono" (input)="validarCampos()" placeholder="Número de contacto" class="custom-input">
+        <input id="inputTelefono" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="10" autocomplete="off" [(ngModel)]="nuevoUsuario.telefono" (ngModelChange)="nuevoUsuario.telefono = +$event; validarCampos()" placeholder="Número de contacto" class="custom-input">
         @if (errorTelefono()) {
           <span class="error-mensaje">{{ errorTelefono() }}</span>
         }
@@ -43,8 +43,8 @@
           Cancelar
         </ion-button>
         <ion-button class="btn-orange" (click)="guardarUsuario()"
-        [disabled] = "!nuevoUsuario.nombre.trim() || !nuevoUsuario.apellido.trim() || !nuevoUsuario.email.trim() || !nuevoUsuario.telefono.trim()">
-          {{esEdicion ? 'Actualizar usuario' : 'Guardar usuario'}}
+        [disabled] = "!nuevoUsuario.nombre.trim() || !nuevoUsuario.apellido.trim() || !nuevoUsuario.email.trim() || !nuevoUsuario.telefono">
+          {{edicion ? 'Actualizar usuario' : 'Guardar usuario'}}
         </ion-button>
       </div>
     </div>
