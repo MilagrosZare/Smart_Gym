@@ -1,7 +1,7 @@
 export type Role = 'admin' | 'socio';
 
 export interface User {
-    id: number;
+    id?: number;
     nombre: string; 
     apellido: string; 
     email: string;

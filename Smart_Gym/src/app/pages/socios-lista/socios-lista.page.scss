@@ -1,0 +1,326 @@
+//Paleta de colores
+$c-bg:          #2a2e33;
+$c-surface:     #373C42;
+$c-surface-2:   #242629;
+$c-border:      #2e3035;
+$c-orange:      #e8920a;
+$c-orange-lt:   #f5a623;
+$c-text:        #f0f0f0;
+$c-muted:       #8a8d94;
+$c-error:       #e05c5c;
+
+$sg-radio: 10px;
+
+//Contenedor principal
+
+ion-content.contenedor-smart-gym {
+    --background: #{$c-bg};
+    --color: #{$c-text};
+}
+
+ion-toolbar {
+    --background: #{$c-surface};
+    --border-color: #{$c-border};
+    --color: #{$c-text};
+}
+
+//Header
+
+.titulo-header {
+    display: flex;
+    align-items: center;
+    gap: 16px; 
+}
+
+.logo-gym {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+}
+
+.nombre-header {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.15em; 
+    
+}
+
+.etiqueta-header {
+    font-size: 14px;
+    color: $c-orange;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-left: 12px;
+}
+
+//Navegacion
+
+.guia-navegacion {
+    font-size: 14px;
+    color: $c-muted;
+    margin-bottom: 24px;
+    margin-top: 28px;
+
+    .dorado {
+        color: $c-orange;
+    }
+}
+
+//Encabezado de pagina
+
+.encabezado-pagina {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 32px;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.titulo-pagina {
+    font-size: 26px;
+    font-weight: 600;
+    margin: 0 0 10px;
+}
+
+.subtitulo-pagina {
+    font-size: 14px;
+    color: $c-muted;
+    margin: 0;
+}
+
+.boton-principal {
+    --background: #{$c-orange};
+    --color: #1a1000;
+    --border-radius: #{$sg-radio};
+    font-size: 14px;
+    font-weight: 600;
+    height: 42px;
+}
+
+//Grilla
+
+.grilla-socios {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 32px;
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr; 
+    }
+}
+
+//Socios
+.tarjeta-socios {
+    background: $c-surface;
+    border: 1px solid $c-border;
+    border-radius: $sg-radio;
+    padding: 16px;
+
+    
+    .titulo-socios {
+        font-size: 13px;
+        color: $c-muted;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+    }
+
+    .numero-socios {
+        font-size: 34px;
+        font-weight: 600;
+        color: $c-text; 
+    }
+
+    .detalle-socios {
+        font-size: 13px;
+        color: $c-muted;
+    }
+
+    
+    &.tarjeta-alerta {
+        border-color: rgba($c-error, 0.2);
+        
+        .titulo-socios, 
+        .numero-socios {
+            color: $c-error; 
+        }
+    }
+
+    &.tarjeta-exito {
+        border-color: rgba(#4ade80, 0.2);
+        
+        .titulo-socios,
+        .numero-socios {
+            color: #4ade80; 
+        }
+    }
+}
+
+//Buscador y filtros
+
+.buscador-smart-gym {
+    --background: #{$c-surface};
+    --color: #{$c-text};
+    --placeholder-color: #{$c-muted};
+    --border-radius: #{$sg-radio};
+    margin-bottom: 15px;
+}
+
+.fila-filtros {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    background: transparent;
+    padding: 0;
+}
+
+.texto-filtrar {
+    font-size: 14px;
+    color: $c-muted;
+}
+
+.grupo-filtros {
+    display: flex;
+    gap: 6px;
+}
+
+.opcion-filtro {
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+    border: 1px solid $c-border;
+    color: $c-muted;
+    background: transparent;
+
+    &.activa {
+        background: $c-orange;
+        color: #1a1000;
+        border-color: $c-orange;
+        font-weight: 600;
+    }
+}
+
+.texto-contador-totales {
+    font-size: 14px;
+    color: $c-muted;
+    margin-left: auto;
+}
+
+//Tabla de usuarios
+
+.tarjeta-tabla {
+    background: $c-surface;
+    border: 1px solid $c-border;
+    border-radius: 12px;
+    margin: 24px 0 0 0;
+    overflow-x: auto;
+    
+}
+
+.tabla-smart-gym {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+    min-width: 700px;
+
+    thead {
+        background: $c-surface-2;
+        th {
+            padding: 14px 16px;
+            text-align: left;
+            font-size: 13px;
+            font-weight: 600;
+            color: $c-muted;
+            text-transform: uppercase;
+            border-bottom: 1px solid $c-border;
+        }
+    }
+
+    tbody {
+        td {
+            padding: 16px 16px;
+            border-bottom: 1px solid $c-border;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+    }
+}
+
+.nombre-usuario-tabla {
+    font-weight: 600;
+    margin: 0;
+}
+
+.celda-texto-gris {
+    color: $c-muted !important;
+}
+
+//Estados Ac/inac
+
+.estado-usuario {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+
+    .punto-estado {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+    }
+
+    &.usuario-activo {
+        color: #4ade80; 
+        .punto-estado { background-color: #4ade80; }
+    }
+
+    &.usuario-inactivo {
+        color: $c-error;
+        .punto-estado { background-color: $c-error; }
+    }
+}
+
+//Botones
+
+.contenedor-acciones {
+    display: flex;
+    gap: 8px;
+}
+
+.boton-accion-icono {
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    border: 1px solid $c-border;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: $c-muted;
+
+    &:hover {
+        border-color: $c-orange;
+        color: $c-orange;
+    }
+
+    &.boton-borrar:hover {
+        border-color: $c-error;
+        color: $c-error;
+    }
+}
+
+.icono-svg {
+    width: 18px;
+    height: 16px;
+}
+
+.pantalla-vacia {
+    text-align: center;
+    padding: 40px !important;
+    color: $c-muted !important;
+}

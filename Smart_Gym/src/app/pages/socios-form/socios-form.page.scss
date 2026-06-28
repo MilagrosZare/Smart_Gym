@@ -1,0 +1,132 @@
+// Paleta de colores 
+$c-bg:          #2a2e33;
+$c-surface:     #373C42;
+$c-surface-2:   #242629;
+$c-border:      #2e3035;
+$c-orange:      #e8920a;
+$c-orange-lt:   #f5a623;
+$c-text:        #f0f0f0;
+$c-muted:       #8a8d94;
+$c-error:       #e05c5c;
+
+$sg-radio: 10px;
+
+.gym-fondo {
+    --background: #{$c-bg};
+    --color: #{$c-text};
+}
+
+//Formulario
+.contenedor-formulario {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100%;
+    padding: 20px;
+}
+
+//Tarjeta formulario
+.card-formulario {
+    background: $c-surface;
+    border: 1px solid $c-border;
+    border-radius: 12px;
+    padding: 30px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}  
+
+.titulo-formulario {
+    color: $c-text;
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 24px;
+}
+
+
+//Datos de entrada
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 18px;
+
+    label {
+        color: $c-muted;
+        font-size: 13px;
+        font-weight: 500;
+    }
+}
+
+.custom-input {
+    background: $c-surface-2;
+    border: 1px solid $c-border;
+    border-radius: 8px;
+    color: $c-text;
+    padding: 12px 14px;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.2s ease;
+
+    &:focus {
+        border-color: $c-orange;
+    }
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        background: #1a1c1e;
+    }
+}
+
+// Alerta de error 
+.error-mensaje {
+    color: $c-error;
+    font-size: 12px;
+    font-weight: 500;
+    margin-top: 2px;
+    display: block;
+    animation: fadeInError 0.2s ease-out;
+}
+
+@keyframes fadeInError {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+//Acciones del formulario
+.acciones-formulario {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+    margin-top: 28px;
+}
+
+.btn-orange {
+    --background: #{$c-orange} ;
+    --background-activated: #{$c-orange-lt} ;
+    --background-hover: #{$c-orange-lt} ;
+    --color: #1a1000 ; 
+    font-weight: bold;
+    --border-radius: #{$sg-radio};
+
+    &[disabled] {
+        opacity: 0.4;
+    }
+}
+
+ion-button[fill="clear"] {
+    --color: #{$c-muted};
+    font-weight: 500;
+    border: 1px solid transparent; 
+    border-radius: #{$sg-radio};
+    transition: all 0.2s ease;
+
+    &:hover {
+        --color: #{$c-error} ;
+        border-color: #{$c-error} ; 
+        background: rgba($c-error, 0.08) ; 
+    }
+}
