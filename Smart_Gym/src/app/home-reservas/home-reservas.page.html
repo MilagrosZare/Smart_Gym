@@ -7,14 +7,14 @@
 <ion-content [fullscreen]="true" class="home-reservas-content">
   <ion-progress-bar *ngIf="cargandoMisClases" type="indeterminate"></ion-progress-bar>
   <div class="page-header">
-    <h1>Reservas</h1>
+    <h1>Reservas <span class="title-icon-inline no-color"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 32 32"><title xmlns="">calendar</title><g fill="none"><path fill="#B4ACBC" d="m2 9l13.267-2.843a3.5 3.5 0 0 1 1.466 0L30 9v15.8a5.2 5.2 0 0 1-5.2 5.2H7.2A5.2 5.2 0 0 1 2 24.8z"/><path fill="#F3EEF8" d="m3 8l12.213-2.818a3.5 3.5 0 0 1 1.574 0L29 8v16.5a4.5 4.5 0 0 1-4.5 4.5h-17A4.5 4.5 0 0 1 3 24.5z"/><path fill="#998EA4" d="M8 12a.2.2 0 0 0-.2.2v2.6c0 .11.09.2.2.2h2.8a.2.2 0 0 0 .2-.2v-2.6a.2.2 0 0 0-.2-.2zm0 5.5a.2.2 0 0 0-.2.2v2.6c0 .11.09.2.2.2h2.8a.2.2 0 0 0 .2-.2v-2.6a.2.2 0 0 0-.2-.2zm-.2 5.6c0-.11.09-.2.2-.2h2.8c.11 0 .2.09.2.2v2.6a.2.2 0 0 1-.2.2H8a.2.2 0 0 1-.2-.2zM14.6 12a.2.2 0 0 0-.2.2v2.6c0 .11.09.2.2.2h2.8a.2.2 0 0 0 .2-.2v-2.6a.2.2 0 0 0-.2-.2zm-.2 5.7c0-.11.09-.2.2-.2h2.8c.11 0 .2.09.2.2v2.6a.2.2 0 0 1-.2.2h-2.8a.2.2 0 0 1-.2-.2zm.2 5.2a.2.2 0 0 0-.2.2v2.6c0 .11.09.2.2.2h2.8a.2.2 0 0 0 .2-.2v-2.6a.2.2 0 0 0-.2-.2zM21 12.2c0-.11.09-.2.2-.2H24c.11 0 .2.09.2.2v2.6a.2.2 0 0 1-.2.2h-2.8a.2.2 0 0 1-.2-.2zm.2 10.7a.2.2 0 0 0-.2.2v2.6c0 .11.09.2.2.2H24a.2.2 0 0 0 .2-.2v-2.6a.2.2 0 0 0-.2-.2z"/><path fill="#0084CE" d="M7.2 2A5.2 5.2 0 0 0 2 7.2V9h28V7.2A5.2 5.2 0 0 0 24.8 2zm14 15.5a.2.2 0 0 0-.2.2v2.6c0 .11.09.2.2.2H24a.2.2 0 0 0 .2-.2v-2.6a.2.2 0 0 0-.2-.2z"/></g></svg></span></h1>
     <p>Elegí una opción para ver clases disponibles o revisar tus inscripciones desde tu cuenta.</p>
   </div>
 
   <div class="cards-grid ion-padding">
     <ion-card class="home-card">
       <ion-card-header>
-        <ion-card-title>Ver clases disponibles</ion-card-title>
+        <ion-card-title>Ver clases disponibles <span class="title-icon-inline small-icon"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 8 8"><title xmlns="">list</title><path fill="currentColor" d="M3 8V6h5v2M3 5V3h5v2M0 8V6h2v2M0 5V3h2v2M0 2V0h2v2m1 0V0h5v2"/></svg></span></ion-card-title>
       </ion-card-header>
       <ion-card-content>
         Consultá el listado completo de clases y reservá tu lugar con un solo toque.
@@ -26,7 +26,7 @@
 
     <ion-card class="home-card">
       <ion-card-header>
-        <ion-card-title>Mis clases inscriptas</ion-card-title>
+        <ion-card-title>Mis clases inscriptas <span class="title-icon-inline"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><title xmlns="">check-ring-round</title><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path d="M12 21a9 9 0 1 0-6.364-2.636"/><path d="m16 10l-3.598 4.318c-.655.786-.983 1.18-1.424 1.2s-.803-.343-1.527-1.067L8 13"/></g></svg></span></ion-card-title>
       </ion-card-header>
       <ion-card-content>
         <ion-list *ngIf="misClases.length > 0; else noClases">
