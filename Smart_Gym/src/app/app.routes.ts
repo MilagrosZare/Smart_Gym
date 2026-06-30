@@ -71,4 +71,10 @@ export const routes: Routes = [
       import('./pages/socios-lista/socios-lista.page').then((m) => m.SociosListaPage),
     canActivate: [authGuard, adminGuard],
   },
+  {
+  path: 'confirmacion',
+  loadComponent: () =>
+    import('./pages/ticket-confirmacion/ticket-confirmacion.page').then((m) => m.TicketConfirmacionPage),
+  },
+
 ];
