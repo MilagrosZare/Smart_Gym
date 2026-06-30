@@ -29,6 +29,11 @@ export class HomeReservasPage implements OnInit {
     this.router.navigate(['/reservas']);
   }
 
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/login'], { replaceUrl: true });
+  }
+
   ngOnInit() {
     const usuario = this.authService.getUser();
     this.usuarioId = usuario?.id ?? null;
