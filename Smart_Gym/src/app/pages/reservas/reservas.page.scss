@@ -1,3 +1,4 @@
+//Paleta de colores
 
 $c-bg:         #2a2e33;
 $c-surface:    #373C42;
@@ -29,17 +30,29 @@ ion-title {
   color: $c-text;
 }
 
-.smartgym-title {
-  font-family: $font;
-  font-weight: 700;
-  color: $c-text;
+//Header
+
+.titulo-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-top: 20px;
+    padding-left: 20px;
 }
 
-.top-bar ion-icon {
-  color: $c-orange;
-  width: 24px;
-  height: 24px;
+.logo-gym {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
 }
+
+.nombre-header {
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: $c-text;
+}
+
 
 .page-header {
   padding: 24px 20px 12px;
@@ -59,28 +72,6 @@ ion-title {
   font-size: 0.9rem;
   margin: 0;
   line-height: 1.5;
-}
-
-.filter-bar {
-  margin: 0 16px 16px;
-  border-radius: 10px;
-  background: $c-surface-2;
-  border: 1px solid $c-border;
-  overflow: hidden;
-
-  ion-segment-button {
-    --color: #{$c-muted};
-    --color-checked: #{$c-orange};
-    font-size: 0.85rem;
-    font-weight: 600;
-    font-family: $font;
-  }
-
-  ion-icon {
-    color: $c-orange;
-    width: 20px;
-    height: 20px;
-  }
 }
 
 .inline-icon {
