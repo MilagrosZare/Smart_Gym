@@ -9,7 +9,7 @@ import { AuthService, UsuarioLogueado } from '../core/service/auth.service';
   templateUrl: './home-admin.page.html',
   styleUrls: ['./home-admin.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonButton, CommonModule, RouterModule]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardContent, IonButton, CommonModule, RouterModule]
 })
 export class HomeAdminPage implements OnInit {
   usuario: UsuarioLogueado | null;

@@ -179,6 +179,14 @@ gap: 4px;
     transition: color 0.2s;
 }
 
+.size-6-pass {
+    width: 18px;
+    height: 18px;
+    color: $c-muted;
+    flex-shrink: 0;
+    transition: color 0.2s;
+}
+
 &__input-wrap:focus-within &__icon {
     color: $c-orange;
 }

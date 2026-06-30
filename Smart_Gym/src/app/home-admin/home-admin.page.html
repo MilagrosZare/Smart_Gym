@@ -6,41 +6,45 @@
 
 <ion-content [fullscreen]="true" class="home-admin-content">
   <ion-header collapse="condense">
-    <ion-toolbar>
+    <ion-toolbar class="toolbar">
       <ion-title size="large">Administrador</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <div class="home-welcome ion-padding">
+  <div class="page-header">
     <h1>{{ welcomeText }}</h1>
     <p>{{ subtitleText }}</p>
     <p *ngIf="usuario">Usuario: {{ usuario.nombre }}</p>
-    <ion-button expand="block" fill="outline" color="light" (click)="logout()" class="logout-button">
+
+    <ion-button expand="block" fill="solid" (click)="logout()" class="logout-button">
       Cerrar sesión
     </ion-button>
+
   </div>
 
   <div class="home-cards ion-padding">
     <ion-card class="cards">
       <ion-card-header>
-        <ion-button expand="block" fill="solid" color="warning" routerLink="/socios-lista" routerDirection="forward" class="home-action-button">
-          Gestionar Usuarios
-        </ion-button>
+        <span class="card-title">Gestionar Usuarios</span>
       </ion-card-header>
       <ion-card-content>
         Accedé al panel para ver, editar y administrar los usuarios del gimnasio.
       </ion-card-content>
+      <ion-button expand="block" fill="solid" routerLink="/socios-lista" routerDirection="forward" class="home-action-btn">
+        Ir a Gestión de Usuarios
+      </ion-button>
     </ion-card>
 
     <ion-card class="cards">
       <ion-card-header>
-        <ion-button expand="block" fill="solid" color="warning" routerLink="/gestionar-clases" routerDirection="forward" class="home-action-button">
-          Gestionar Clases
-        </ion-button>
+        <span class="card-title">Gestionar Clases</span>
       </ion-card-header>
       <ion-card-content>
         Accedé al panel de clases para crear, modificar o revisar la oferta de clases.
       </ion-card-content>
+      <ion-button expand="block" fill="solid" routerLink="/gestionar-clases" routerDirection="forward" class="home-action-btn">
+        Ir a Gestión de Clases
+      </ion-button>
     </ion-card>
   </div>
 </ion-content>

@@ -17,30 +17,80 @@ $font: 'Inter', system-ui, sans-serif;
   font-family: $font;
 }
 
-.home-welcome {
-  border-left: 4px solid $c-orange;
+.toolbar {
+  --background: #{$c-bg};
+  --color: #{$c-text};
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, $c-orange, transparent);
+    opacity: 0.6;
+  }
+}
+
+ion-title {
+  font-family: $font;
+  font-weight: 700;
+  font-size: 1.6rem;
+  letter-spacing: 0.3px;
+  color: $c-text;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 10px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.page-header {
+  margin: 16px 16px 8px;
+  padding: 20px;
   background: $c-surface;
+  border: 1px solid $c-border;
   border-radius: 12px;
-  margin-bottom: 16px;
-  padding: 16px;
+  border-left: 3px solid $c-orange;
+  font-family: $font;
+  gap: 15px;
+}
 
-  h1 {
-    font-size: 22px;
-    font-weight: 700;
-    color: $c-text;
-    margin-bottom: 4px;
-  }
+.page-header h1 {
+  margin: 0 0 8px;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: $c-text;
+  letter-spacing: 0.3px;
+  display: flex;
+  align-items: center;
+  padding-bottom: 10px;
+}
 
-  p {
-    color: $c-muted;
-    font-size: 14px;
-    margin: 0 0 4px;
-  }
+.page-header p {
+  margin: 0;
+  color: $c-muted;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  padding-bottom: 10px;
+}
 
-  .logout-button {
-    margin-top: 12px;
-    --border-color: $c-muted;
-    --color: $c-text;
+.logout-button {
+  --background: #{$c-orange};
+  --background-hover: #{$c-orange};
+  --background-activated: #{$c-orange};
+  --color: #{$c-surface-2};
+  --border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  margin-top: 12px;
+
+  &:focus,
+  &.ion-focused {
+    --background: #{$c-orange} !important;
+    --background-activated: #{$c-orange} !important;
   }
 }
 
@@ -63,31 +113,38 @@ $font: 'Inter', system-ui, sans-serif;
   flex-direction: column;
   flex: 1 1 280px;
   max-width: 500px;
-  height: 100px;
+  height: auto;
   margin: 0;
-  padding: 20px 20px;
+  padding: 20px;
+  overflow: visible;
 
   ion-card-header {
-    padding-bottom: 4px;
-  }
-
-  ion-card-title {
-    color: $c-orange;
-    font-size: 17px;
-    font-weight: 700;
+    padding: 0 0 4px;
   }
 
   ion-card-content {
     color: $c-muted;
     font-size: 14px;
     line-height: 1.4;
+    padding: 0 0 16px;
   }
+}
 
-  .home-action-button {
-    margin-top: 12px;
-    --background: #{$c-orange};
-    --color: #{$c-bg};
-    --border-radius: 8px;
-    font-weight: 700;
-  }
+.card-title {
+  color: $c-orange;
+  font-size: 17px;
+  font-weight: 700;
+  display: block;
+}
+
+.home-action-btn {
+  --background: #{$c-orange};
+  --background-hover: #{$c-orange};
+  --background-activated: #{$c-orange};
+  --color: #{$c-surface-2};
+  --border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  width: 100%;
+  margin-top: 12px;
 }
