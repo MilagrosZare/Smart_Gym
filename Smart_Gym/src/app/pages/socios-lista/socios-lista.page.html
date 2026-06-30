@@ -1,18 +1,14 @@
+<ion-content class="contenedor-smart-gym">
 <ion-header>
   <ion-toolbar>
     <ion-title>
       <div class="titulo-header">
-        <img src="assets/Smart Gym LOGO.png"alt="" class="logo-gym">
-        <div>
-          <span class="nombre-header">SMART GYM</span>
-          <span class="etiqueta-header">Admin</span>
-        </div>
+        <img src="assets/Smart Gym LOGO.png" alt="" class="logo-gym">
+        <span class="nombre-header">Administración de SMART GYM</span>
       </div>
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
-<ion-content class="contenedor-smart-gym">
 
   <div class="gestion-navegacion">
     <span>Panel</span> / <span class="dorado">Gestión de Usuarios</span>
@@ -34,14 +30,15 @@
       <div class="numero-socios">{{ cantTotal }}</div>
       <div class="detalle-socios">registradas</div>
     </div>
-    <div class="tarjeta-socios tarjeta-exito" >
+    <div class="tarjeta-socios tarjeta-exito">
       <div class="titulo-socios">Activas</div>
       <div class="numero-socios">{{ cantActivos }}</div>
       <div class="detalle-socios">membresías vigentes</div>
     </div>
     <div class="tarjeta-socios tarjeta-alerta">
       <div class="titulo-socios">Inactivas</div>
-      <div class="numero-socios">{{ cantInactivos }}</div> <div class="detalle-socios">sin actividad</div>
+      <div class="numero-socios">{{ cantInactivos }}</div>
+      <div class="detalle-socios">sin actividad</div>
     </div>
   </div>
 
@@ -57,7 +54,7 @@
 
     <div class="fila-filtros">
       <span class="texto-filtrar">Filtrar Estado:</span>
-      
+
       <div class="grupo-filtros">
         <button class="opcion-filtro" [class.activa]="filtroEstado === 'todos'" (click)="seleccionarEstado('todos')">Todos</button>
         <button class="opcion-filtro" [class.activa]="filtroEstado === 'activo'" (click)="seleccionarEstado('activo')">Activos</button>
@@ -105,7 +102,7 @@
                 </svg>
               </button>
               <button class="boton-accion-icono boton-borrar" (click)="alertBorrar(u)" title="Eliminar">
-                <svg class="icono-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" >
+                <svg class="icono-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                   <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32" d="M296 64h-80a7.91 7.91 0 00-8 8v24h96V72a7.91 7.91 0 00-8-8z"/>
                   <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M32 128h448M80 128l32 304a40 40 0 0040 40h208a40 40 0 0040-40l32-304M184 192v192M256 192v192M328 192v192"/>
                 </svg>

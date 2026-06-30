@@ -16,12 +16,18 @@ $sg-radio: 10px;
 ion-content.contenedor-smart-gym {
     --background: #{$c-bg};
     --color: #{$c-text};
+    --padding-start: 24px;
+    --padding-end: 24px;
+    --padding-top: 24px;
 }
 
 ion-toolbar {
-    --background: #{$c-surface};
+    --background: #{$c-surface-2};
     --border-color: #{$c-border};
     --color: #{$c-text};
+    --padding-start: 20px;
+    --padding-end: 20px;
+    --min-height: 56px;
 }
 
 //Header
@@ -29,33 +35,25 @@ ion-toolbar {
 .titulo-header {
     display: flex;
     align-items: center;
-    gap: 16px; 
+    gap: 12px;
 }
 
 .logo-gym {
-    width: 42px;
-    height: 42px;
+    width: 28px;
+    height: 28px;
     object-fit: contain;
 }
 
 .nombre-header {
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 700;
-    letter-spacing: 0.15em; 
-    
-}
-
-.etiqueta-header {
-    font-size: 14px;
-    color: $c-orange;
-    font-weight: 500;
-    text-transform: uppercase;
-    margin-left: 12px;
+    letter-spacing: 0.02em;
+    color: $c-text;
 }
 
 //Navegacion
 
-.guia-navegacion {
+.gestion-navegacion {
     font-size: 14px;
     color: $c-muted;
     margin-bottom: 24px;
@@ -70,7 +68,7 @@ ion-toolbar {
 
 .encabezado-pagina {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     margin-bottom: 32px;
     gap: 12px;
@@ -79,7 +77,7 @@ ion-toolbar {
 
 .titulo-pagina {
     font-size: 26px;
-    font-weight: 600;
+    font-weight: 700;
     margin: 0 0 10px;
 }
 
@@ -91,11 +89,16 @@ ion-toolbar {
 
 .boton-principal {
     --background: #{$c-orange};
+    --background-hover: #{$c-orange-lt};
     --color: #1a1000;
-    --border-radius: #{$sg-radio};
-    font-size: 14px;
-    font-weight: 600;
-    height: 42px;
+    --border-radius: 6px;
+    --padding-start: 18px;
+    --padding-end: 18px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    height: 40px;
 }
 
 //Grilla
@@ -107,7 +110,7 @@ ion-toolbar {
     margin-bottom: 32px;
 
     @media (max-width: 768px) {
-        grid-template-columns: 1fr; 
+        grid-template-columns: 1fr;
     }
 }
 
@@ -116,55 +119,65 @@ ion-toolbar {
     background: $c-surface;
     border: 1px solid $c-border;
     border-radius: $sg-radio;
-    padding: 16px;
+    padding: 18px 20px;
 
-    
     .titulo-socios {
-        font-size: 13px;
+        font-size: 12px;
+        font-weight: 600;
         color: $c-muted;
         text-transform: uppercase;
-        margin-bottom: 8px;
+        letter-spacing: 0.04em;
+        margin-bottom: 10px;
     }
 
     .numero-socios {
-        font-size: 34px;
-        font-weight: 600;
-        color: $c-text; 
+        font-size: 32px;
+        font-weight: 700;
+        color: $c-text;
     }
 
     .detalle-socios {
         font-size: 13px;
         color: $c-muted;
+        margin-top: 2px;
     }
 
-    
     &.tarjeta-alerta {
         border-color: rgba($c-error, 0.2);
-        
-        .titulo-socios, 
+
+        .titulo-socios,
         .numero-socios {
-            color: $c-error; 
+            color: $c-error;
         }
     }
 
     &.tarjeta-exito {
         border-color: rgba(#4ade80, 0.2);
-        
+
         .titulo-socios,
         .numero-socios {
-            color: #4ade80; 
+            color: #4ade80;
         }
     }
 }
 
 //Buscador y filtros
 
+.barra-herramientas {
+    margin-bottom: 16px;
+}
+
 .buscador-smart-gym {
     --background: #{$c-surface};
     --color: #{$c-text};
     --placeholder-color: #{$c-muted};
-    --border-radius: #{$sg-radio};
-    margin-bottom: 15px;
+    --icon-color: #{$c-muted};
+    --border-radius: 8px;
+    --box-shadow: none;
+    --padding-start: 12px;
+    margin-bottom: 16px;
+    padding: 0;
+    border: 1px solid $c-border;
 }
 
 .fila-filtros {
@@ -217,7 +230,6 @@ ion-toolbar {
     border-radius: 12px;
     margin: 24px 0 0 0;
     overflow-x: auto;
-    
 }
 
 .tabla-smart-gym {
@@ -229,19 +241,20 @@ ion-toolbar {
     thead {
         background: $c-surface-2;
         th {
-            padding: 14px 16px;
+            padding: 14px 20px;
             text-align: left;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 600;
             color: $c-muted;
             text-transform: uppercase;
+            letter-spacing: 0.04em;
             border-bottom: 1px solid $c-border;
         }
     }
 
     tbody {
         td {
-            padding: 16px 16px;
+            padding: 18px 20px;
             border-bottom: 1px solid $c-border;
         }
         tr:last-child td {
@@ -274,7 +287,7 @@ ion-toolbar {
     }
 
     &.usuario-activo {
-        color: #4ade80; 
+        color: #4ade80;
         .punto-estado { background-color: #4ade80; }
     }
 
@@ -292,8 +305,8 @@ ion-toolbar {
 }
 
 .boton-accion-icono {
-    width: 36px;
-    height: 36px;
+    width: 34px;
+    height: 34px;
     border-radius: 6px;
     border: 1px solid $c-border;
     background: transparent;
@@ -315,7 +328,7 @@ ion-toolbar {
 }
 
 .icono-svg {
-    width: 18px;
+    width: 16px;
     height: 16px;
 }
 

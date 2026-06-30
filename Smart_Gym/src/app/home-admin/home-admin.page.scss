@@ -17,35 +17,27 @@ $font: 'Inter', system-ui, sans-serif;
   font-family: $font;
 }
 
-.toolbar {
-  --background: #{$c-bg};
-  --color: #{$c-text};
-  position: relative;
+//Header
 
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, $c-orange, transparent);
-    opacity: 0.6;
-  }
+.titulo-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-top: 20px;
+    padding-left: 20px;
 }
 
-ion-title {
-  font-family: $font;
-  font-weight: 700;
-  font-size: 1.6rem;
-  letter-spacing: 0.3px;
-  color: $c-text;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+.logo-gym {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+}
+
+.nombre-header {
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: $c-text;
 }
 
 .page-header {
