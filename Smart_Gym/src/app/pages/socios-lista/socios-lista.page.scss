@@ -88,17 +88,20 @@ ion-toolbar {
 }
 
 .boton-principal {
-    --background: #{$c-orange};
-    --background-hover: #{$c-orange-lt};
-    --color: #1a1000;
-    --border-radius: 6px;
-    --padding-start: 18px;
-    --padding-end: 18px;
+    background: #{$c-orange};
+    color: #1a1000;
+    border-radius: 6px;
+    padding-left: 18px;
+    padding-right: 18px;
     font-size: 13px;
     font-weight: 700;
     letter-spacing: 0.03em;
     text-transform: uppercase;
     height: 40px;
+}
+
+.boton-principal:hover {
+    background: #{$c-orange-lt};;
 }
 
 //Grilla

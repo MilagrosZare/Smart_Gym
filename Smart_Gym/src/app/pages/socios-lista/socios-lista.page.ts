@@ -12,7 +12,7 @@ import { UsuarioService } from 'src/app/core/services/usuario-service.service';
   templateUrl: './socios-lista.page.html',
   styleUrls: ['./socios-lista.page.scss'],
   standalone: true,
-  imports: [IonContent, CommonModule, FormsModule,IonButton,RouterLink,IonTitle,IonHeader,IonToolbar,IonSearchbar,]
+  imports: [IonContent, CommonModule, FormsModule,IonTitle,IonHeader,IonToolbar,IonSearchbar,]
 })
 export class SociosListaPage implements OnInit {
 
@@ -36,10 +36,15 @@ export class SociosListaPage implements OnInit {
     private usuarioService: UsuarioService
   ) { }
 
+  public irASociosLista(): void {
+    this.router.navigate(['/socios-form']);
+  }
+
 
   public ngOnInit(): void {
     this.cargarUsuarios();
   }
+  
 
   public cargarUsuarios(): void{
     this.usuarioService.getUsuarios().subscribe({
