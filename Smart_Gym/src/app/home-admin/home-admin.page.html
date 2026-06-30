@@ -21,18 +21,22 @@
   </div>
 
   <div class="home-cards ion-padding">
-    <ion-card button routerLink="/socios-lista" routerDirection="forward">
+    <ion-card class="cards">
       <ion-card-header>
-        <ion-card-title>Gestionar Usuarios</ion-card-title>
+        <ion-button expand="block" fill="solid" color="warning" routerLink="/socios-lista" routerDirection="forward" class="home-action-button">
+          Gestionar Usuarios
+        </ion-button>
       </ion-card-header>
       <ion-card-content>
         Accedé al panel para ver, editar y administrar los usuarios del gimnasio.
       </ion-card-content>
     </ion-card>
 
-    <ion-card button routerLink="/gestionar-clases" routerDirection="forward">
+    <ion-card class="cards">
       <ion-card-header>
-        <ion-card-title>Gestionar Clases</ion-card-title>
+        <ion-button expand="block" fill="solid" color="warning" routerLink="/gestionar-clases" routerDirection="forward" class="home-action-button">
+          Gestionar Clases
+        </ion-button>
       </ion-card-header>
       <ion-card-content>
         Accedé al panel de clases para crear, modificar o revisar la oferta de clases.

@@ -1,72 +1,93 @@
-ion-content.home-admin-content {
-  --background: rgb(15, 15, 15);
-  background-color: rgb(15, 15, 15);
-  color: #f5f5f5;
+//Paleta de colores
+$c-bg:         #2a2e33;
+$c-surface:    #373C42;
+$c-surface-2:  #242629;
+$c-border:     #2e3035;
+$c-orange:     #e8920a;
+$c-orange-lt:  #f5a623;
+$c-orange-dim: rgba(232, 146, 10, 0.15);
+$c-text:       #f0f0f0;
+$c-muted:      #8a8d94;
+$c-error:      #e05c5c;
+
+$font: 'Inter', system-ui, sans-serif;
+
+.home-admin-content {
+  --background: #{$c-bg};
+  font-family: $font;
 }
 
 .home-welcome {
-  padding: 22px 16px 18px;
+  border-left: 4px solid $c-orange;
+  background: $c-surface;
+  border-radius: 12px;
   margin-bottom: 16px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  border-radius: 20px;
-}
+  padding: 16px;
 
-.home-welcome h1 {
-  margin-bottom: 10px;
-  font-size: 2rem;
-  color: #fff;
-}
+  h1 {
+    font-size: 22px;
+    font-weight: 700;
+    color: $c-text;
+    margin-bottom: 4px;
+  }
 
-.home-welcome p {
-  margin: 0;
-  color: #d1d1d1;
-  line-height: 1.7;
+  p {
+    color: $c-muted;
+    font-size: 14px;
+    margin: 0 0 4px;
+  }
+
+  .logout-button {
+    margin-top: 12px;
+    --border-color: $c-muted;
+    --color: $c-text;
+  }
 }
 
 .home-cards {
-  display: grid;
-  gap: 18px;
-  padding: 0 16px 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
 }
 
-ion-card {
-  background: #121212;
-  border-radius: 20px;
-  border: 1px solid rgba(255, 159, 26, 0.18);
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.25);
-  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-}
+.cards {
+  background: $c-surface;
+  color: $c-text;
+  border-radius: 12px;
+  border: 1px solid $c-border;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+  font-family: $font;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 280px;
+  max-width: 500px;
+  height: 100px;
+  margin: 0;
+  padding: 20px 20px;
 
-ion-card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(255, 159, 26, 0.32);
-  box-shadow: 0 20px 40px rgba(255, 159, 26, 0.16);
-}
+  ion-card-header {
+    padding-bottom: 4px;
+  }
 
-ion-card-title {
-  color: #ffc973;
-}
+  ion-card-title {
+    color: $c-orange;
+    font-size: 17px;
+    font-weight: 700;
+  }
 
-ion-card-content {
-  color: #e5e5e5;
-}
+  ion-card-content {
+    color: $c-muted;
+    font-size: 14px;
+    line-height: 1.4;
+  }
 
-.logout-button {
-  margin-top: 18px;
-  --border-radius: 12px;
-  --background: transparent;
-  --color: #ffca4c;
-  --border-color: rgba(255, 202, 76, 0.45);
-  border: 1px solid rgba(255, 202, 76, 0.45);
-}
-
-.logout-button:hover {
-  --background: rgba(255, 202, 76, 0.12);
-}
-
-@media (min-width: 768px) {
-  .home-cards {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .home-action-button {
+    margin-top: 12px;
+    --background: #{$c-orange};
+    --color: #{$c-bg};
+    --border-radius: 8px;
+    font-weight: 700;
   }
 }
