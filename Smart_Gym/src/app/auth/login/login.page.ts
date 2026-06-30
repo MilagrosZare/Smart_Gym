@@ -46,7 +46,7 @@ export class LoginPage {
     this.authService.login(datosLogin).subscribe({
       next: (response) => {
         this.loading.set(false);
-        const role = response?.role?.toString().trim().toLowerCase();
+        const role = response?.nombre?.toString().trim().toLowerCase();
         const isAdmin = role === 'administradorgym';
         let destination = isAdmin ? '/home-admin' : '/home-reservas';
 

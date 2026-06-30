@@ -43,7 +43,7 @@ export class AuthService {
 
   isAdmin(): boolean {
     const usuario = this.getUser();
-    const role = usuario?.role?.toString().trim().toLowerCase();
+    const role = usuario?.nombre?.toString().trim().toLowerCase();
     return !!usuario && role === 'administradorgym';
   }
 }
