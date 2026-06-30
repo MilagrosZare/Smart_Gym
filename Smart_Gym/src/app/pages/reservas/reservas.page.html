@@ -2,13 +2,11 @@
   <ion-toolbar class="top-bar">
     <ion-buttons slot="start">
       <ion-button routerLink="/home-reservas">
-        <ion-icon src="assets/icon/arrow-back.svg"></ion-icon>
       </ion-button>
     </ion-buttons>
 
     <ion-title>
       <span class="smartgym-title">Smart Gym</span>
-      <ion-icon src="assets/icon/user.svg"></ion-icon>
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -26,21 +24,13 @@
     </ion-segment-button>
     <ion-segment-button value="yoga" layout="icon-start">
       <ion-icon src="assets/icon/stretching.svg"></ion-icon>
-      <ion-label>Yoga</ion-label>
+      <ion-label>Yoga <span class="inline-icon icon-orange"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><title xmlns="">yoga-03</title><g fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5"><path d="M9 10c0 3.866 3 7 3 7s3-3.134 3-7s-3-7-3-7s-3 3.134-3 7Z"/><path stroke-linecap="round" d="M6.33 8C4.115 7.046 2 7 2 7s.096 4.381 2.857 7.143S12 17 12 17s4.381-.096 7.143-2.857S22 7 22 7s-2.114.046-4.33 1m-5.65 9c-.166 1.333.64 4 3.494 4c1.995 0 2.993-2 6.486 0c-.4-2-1.2-3.28-2.367-4m-7.654 0c.167 1.333-.64 4-3.492 4C6.49 21 5.493 19 2 21c.4-2 1.2-3.28 2.367-4"/></g></svg></span></ion-label>
     </ion-segment-button>
     <ion-segment-button value="spinning" layout="icon-start">
       <ion-icon src="assets/icon/exercise.svg"></ion-icon>
-      <ion-label>Spinning</ion-label>
+      <ion-label>Spinning <span class="inline-icon icon-orange"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><title xmlns="">lightning-fill</title><path fill="currentColor" d="M13.133 2.379a1 1 0 0 1 1.77.785L13.848 9.5h3.819a1 1 0 0 1 .784 1.621l-7.917 10a1 1 0 0 1-1.77-.785L9.819 14H6a1 1 0 0 1-.783-1.621z"/></svg></span></ion-label>
     </ion-segment-button>
   </ion-segment>
-
-  <div class="page-header secondary-card">
-    <h2>Ver clases disponibles</h2>
-    <p>Consultá el listado completo de clases y reservá tu lugar con un solo toque.</p>
-    <ion-button expand="block" fill="solid" color="warning" routerLink="/reservas" routerDirection="forward" class="action-button">
-      Ir a clases disponibles
-    </ion-button>
-  </div>
 
   <ion-progress-bar *ngIf="cargando" type="indeterminate"></ion-progress-bar>
 
