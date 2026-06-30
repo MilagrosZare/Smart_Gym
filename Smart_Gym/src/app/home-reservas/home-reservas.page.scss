@@ -18,6 +18,37 @@ ion-content.home-reservas-content {
   font-family: $font;
 }
 
+.toolbar {
+  --background: #{$c-bg};
+  --color: #{$c-text};
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, $c-orange, transparent);
+    opacity: 0.6;
+  }
+}
+
+ion-title {
+  font-family: $font;
+  font-weight: 700;
+  font-size: 1.6rem;
+  letter-spacing: 0.3px;
+  color: $c-text;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
 .page-header {
   margin: 16px;
   padding: 20px;
