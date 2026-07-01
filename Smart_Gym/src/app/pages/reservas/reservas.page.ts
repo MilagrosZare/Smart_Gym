@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { Clase, ClaseService } from '../../core/service/clase.service';
 import { AuthService } from '../../core/service/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-reservas',
@@ -21,8 +22,13 @@ export class ReservasPage implements OnInit {
   constructor(
     private toastController: ToastController,
     private claseService: ClaseService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
+
+  public irAHomeReservas(): void {
+    this.router.navigate(['/home-reservas']);
+  }
 
   ngOnInit() {
     this.cargarClases();

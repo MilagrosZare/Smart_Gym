@@ -52,15 +52,38 @@ ion-toolbar {
 }
 
 //Navegacion
-
 .gestion-navegacion {
-    font-size: 14px;
-    color: $c-muted;
     margin-bottom: 24px;
     margin-top: 28px;
 
-    .dorado {
-        color: $c-orange;
+    .boton-volver-panel {
+        background: transparent;
+        border: none;
+        padding: 0;
+        margin: 0;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        cursor: pointer;
+        font-family: inherit;
+        font-size: 14px;
+        color: $c-muted; /* Usa tu gris global */
+        transition: opacity 0.2s ease;
+
+        &:hover {
+            opacity: 0.85;
+        }
+
+        .icono-volver {
+            width: 14px;
+            height: 14px;
+            color: $c-orange; /* Mantiene la flecha con el naranja de Smart Gym */
+        }
+
+        .dorado {
+            color: $c-orange; /* Mantiene el texto "Gestión de Usuarios" resaltado */
+            font-weight: 600;
+        }
     }
 }
 

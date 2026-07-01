@@ -30,6 +30,42 @@ ion-title {
   color: $c-text;
 }
 
+.gestion-navegacion {
+    margin-bottom: 24px;
+    margin-top: 28px;
+
+    .boton-volver-panel {
+        background: transparent;
+        border: none;
+        padding: 0;
+        margin: 0;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        cursor: pointer;
+        font-family: inherit;
+        font-size: 14px;
+        color: $c-muted;
+        transition: opacity 0.2s ease;
+
+        &:hover {
+            opacity: 0.85;
+        }
+
+        .icono-volver {
+            width: 14px;
+            height: 14px;
+            color: $c-orange;
+        }
+
+        .dorado {
+            color: $c-orange;
+            font-weight: 600;
+        }
+    }
+}
+
+
 //Header
 
 .titulo-header {
