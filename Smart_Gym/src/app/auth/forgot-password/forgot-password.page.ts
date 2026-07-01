@@ -25,7 +25,7 @@ export class ForgotPasswordPage {
       return;
     }
 
-    const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.email);
+    const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.email); // Regex: expresión regular, valida formato de correo electrónico
     if (!emailValido) {
       this.error.set('El formato del correo no es válido.');
       return;
@@ -36,6 +36,7 @@ export class ForgotPasswordPage {
 
     // TODO: reemplazar por llamada real al backend
     // this.authService.forgotPassword(this.email).subscribe({ ... })
+
     setTimeout(() => {
       this.loading.set(false);
       this.enviado.set(true);
@@ -44,7 +45,6 @@ export class ForgotPasswordPage {
 
   reenviar(): void {
     this.enviado.set(false);
-    // Vuelve al paso 1 manteniendo el email para que el usuario pueda reenviar
   }
 
   volverAlLogin(): void {

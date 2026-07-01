@@ -36,19 +36,19 @@ export class LoginPage {
 
     this.loading.set(true);
 
-    // Mapeamos los datos para que coincidan con las llaves que lee el Map de Java
+    // Mapeo de datos para que coincidan con los del backend
     const datosLogin = {
       nombre: this.email,       // El input 'email' viaja como el campo 'nombre'
       contrasena: this.password // El input 'password' viaja como 'contrasena'
     };
 
-    // Consumimos el endpoint real de tu backend
+    // Consumimos el endpoint real del backend
     this.authService.login(datosLogin).subscribe({
       next: (response) => {
         this.loading.set(false);
-        const role = response?.nombre?.toString().trim().toLowerCase();
+        const role = response?.nombre?.toString().trim().toLowerCase(); 
         const isAdmin = role === 'administradorgym';
-        let destination = isAdmin ? '/home-admin' : '/home-reservas';
+        let destination = isAdmin ? '/home-admin' : '/home-reservas'; //Asignación de roles y pantallas
 
         if (!isAdmin) {
           if (this.returnUrl && this.returnUrl !== '/login' && this.returnUrl !== '/home-admin') {
